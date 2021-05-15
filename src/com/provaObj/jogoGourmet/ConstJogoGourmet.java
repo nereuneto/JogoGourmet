@@ -15,4 +15,6 @@ public class ConstJogoGourmet {
 	public static final String NEGATIVO = " não.";
 	public static final String INTERROGACAO = "?";
 	public static final String COMPLETE = "Complete";
+	public static final String LASANHA = "Lasanha";
+	public static final String BOLO_DE_CHOCOLATE = "Bolo de Chocolate";
 }

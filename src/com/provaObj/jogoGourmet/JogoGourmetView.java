@@ -1,10 +1,10 @@
 package com.provaObj.jogoGourmet;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
 
 public class JogoGourmetView {
 	private List<PratoList> pratoList = new ArrayList<>();
@@ -21,7 +21,7 @@ public class JogoGourmetView {
 				if (JogoGourmetMensagens.perguntaLasanha() == 0) {
 					JogoGourmetMensagens.repostaCorreta();
 				} else {
-					controller.novoPrato(this.pratoList ,"Lasanha");
+					controller.novoPrato(this.pratoList ,ConstJogoGourmet.LASANHA);
 				}	
 			}
 		} else {
@@ -29,7 +29,7 @@ public class JogoGourmetView {
 				if (JogoGourmetMensagens.perguntaBolo() == 0) {
 					JogoGourmetMensagens.repostaCorreta();
 				} else {
-					controller.novoPrato(this.boloList, "Bolo de Chocolate");
+					controller.novoPrato(this.boloList, ConstJogoGourmet.BOLO_DE_CHOCOLATE);
 				}	
 			}
 		}
