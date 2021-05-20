@@ -7,15 +7,17 @@ import javax.swing.JOptionPane;
 
 public class JogoGourmetController {
 	
-	void novoPrato(List<PratoList> novaLista, String anterior) {
-		String description = JogoGourmetMensagens.perguntaDesisto();
-		String characteristic = JogoGourmetMensagens.mensagemCompleta(description, anterior);
-		novaLista.add(new PratoList(new Prato(description, characteristic)));
+	PratoList novoPrato(List<PratoList> novaLista, String anterior) {
+		String descricao = JogoGourmetMensagens.perguntaDesisto();
+		String tipo = JogoGourmetMensagens.mensagemCompleta(descricao, anterior);
+		Prato novoPrato = new Prato(descricao,tipo);
+		PratoList pratoListNovo = new PratoList(novoPrato);
+		return pratoListNovo;
 	}
 	
 	boolean validarPrato(List<PratoList> pratoLista) {
 		for (PratoList prato : pratoLista) {
-			int result = JogoGourmetMensagens.validarPrato(prato.getPrato().getDescricao());
+			int result = JogoGourmetMensagens.validarPrato(prato.getPrato().getTipo());
 			if (result == JOptionPane.YES_OPTION) {
 				if (prato.getPratoList() == null) {
 					if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getDescricao()) == JOptionPane.YES_OPTION) {
@@ -32,7 +34,7 @@ public class JogoGourmetController {
 					if (validacaoPrato) {
 						return true;
 					} else {
-						if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getDescricao()) == JOptionPane.YES_OPTION) {
+						if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getTipo()) == JOptionPane.YES_OPTION) {
 							JogoGourmetMensagens.repostaCorreta();
 							return true;
 						} else {

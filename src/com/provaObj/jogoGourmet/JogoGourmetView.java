@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 
 public class JogoGourmetView {
+	private boolean fechar = false;
 	private List<PratoList> pratoList = new ArrayList<>();
 	private List<PratoList> boloList = new ArrayList<>();
 	private JogoGourmetController controller = new JogoGourmetController();
@@ -21,18 +22,22 @@ public class JogoGourmetView {
 				if (JogoGourmetMensagens.perguntaLasanha() == 0) {
 					JogoGourmetMensagens.repostaCorreta();
 				} else {
-					controller.novoPrato(this.pratoList ,ConstJogoGourmet.LASANHA);
+					pratoList.add(controller.novoPrato(this.pratoList ,ConstJogoGourmet.LASANHA));
 				}	
 			}
 		} else {
-			if (!controller.validarPrato(this.pratoList)) { 
+			if (!controller.validarPrato(this.boloList)) { 
 				if (JogoGourmetMensagens.perguntaBolo() == 0) {
 					JogoGourmetMensagens.repostaCorreta();
 				} else {
-					controller.novoPrato(this.boloList, ConstJogoGourmet.BOLO_DE_CHOCOLATE);
+					boloList.add(controller.novoPrato(this.boloList, ConstJogoGourmet.BOLO_DE_CHOCOLATE));
 				}	
 			}
 		}
 		iniciarJogo();
+	}
+	
+	public boolean getBotaoFechar() {
+		return fechar;
 	}
 }

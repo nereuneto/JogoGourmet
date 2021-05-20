@@ -14,7 +14,7 @@ public class JogoGourmetMensagens {
 	}
 	
 	public static int mensagemInicial() {
-		Object[] options = { "Ok", "Fechar"};
+		Object[] options = { "Ok"};
 		return JOptionPane.showOptionDialog(null, textoJustificado(ConstJogoGourmet.PRATO_GOSTO), ConstJogoGourmet.JOGO_GOURMET, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 	}
 	
