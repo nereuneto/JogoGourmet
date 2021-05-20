@@ -18,19 +18,19 @@ public class JogoGourmetView {
 			System.exit(1);
 		}
 		if (JogoGourmetMensagens.perguntaMassa() == 0) {			
-			if (!controller.validarPrato(this.pratoList)) { 
+			if (!controller.validarPrato(this.pratoList, true)) { 
 				if (JogoGourmetMensagens.perguntaLasanha() == 0) {
 					JogoGourmetMensagens.repostaCorreta();
 				} else {
-					pratoList.add(controller.novoPrato(this.pratoList ,ConstJogoGourmet.LASANHA));
+					pratoList.add(controller.novoPrato(ConstJogoGourmet.LASANHA));
 				}	
 			}
 		} else {
-			if (!controller.validarPrato(this.boloList)) { 
+			if (!controller.validarPrato(this.boloList, true)) { 
 				if (JogoGourmetMensagens.perguntaBolo() == 0) {
 					JogoGourmetMensagens.repostaCorreta();
 				} else {
-					boloList.add(controller.novoPrato(this.boloList, ConstJogoGourmet.BOLO_DE_CHOCOLATE));
+					boloList.add(controller.novoPrato(ConstJogoGourmet.BOLO_DE_CHOCOLATE));
 				}	
 			}
 		}

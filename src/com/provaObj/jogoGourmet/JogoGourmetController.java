@@ -7,7 +7,9 @@ import javax.swing.JOptionPane;
 
 public class JogoGourmetController {
 	
-	PratoList novoPrato(List<PratoList> novaLista, String anterior) {
+	List<PratoList> listaPrato = new ArrayList<>();
+	
+	PratoList novoPrato(String anterior) {
 		String descricao = JogoGourmetMensagens.perguntaDesisto();
 		String tipo = JogoGourmetMensagens.mensagemCompleta(descricao, anterior);
 		Prato novoPrato = new Prato(descricao,tipo);
@@ -15,31 +17,35 @@ public class JogoGourmetController {
 		return pratoListNovo;
 	}
 	
-	boolean validarPrato(List<PratoList> pratoLista) {
+	boolean validarPrato(List<PratoList> pratoLista, boolean isTipo) {
 		for (PratoList prato : pratoLista) {
-			int result = JogoGourmetMensagens.validarPrato(prato.getPrato().getTipo());
+			int result;
+			if(isTipo) {
+				result = JogoGourmetMensagens.validarPrato(prato.getPrato().getTipo());
+			}else {
+				result = JogoGourmetMensagens.validarPrato(prato.getPrato().getDescricao());
+			}
 			if (result == JOptionPane.YES_OPTION) {
 				if (prato.getPratoList() == null) {
 					if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getDescricao()) == JOptionPane.YES_OPTION) {
 						JogoGourmetMensagens.repostaCorreta();
 						return true;	
 					} else {
-						List<PratoList> novaLista = new ArrayList<>();
-						novoPrato(novaLista, prato.getPrato().getDescricao());
-						prato.setPratoList(novaLista);						
+						listaPrato.add(novoPrato(prato.getPrato().getDescricao()));
+						prato.setPratoList(listaPrato);
 						return true;
 					}
 				} else {
-					boolean validacaoPrato = validarPrato(prato.getPratoList());			
+					boolean validacaoPrato = validarPrato(prato.getPratoList(),false);			
 					if (validacaoPrato) {
 						return true;
 					} else {
-						if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getTipo()) == JOptionPane.YES_OPTION) {
+						if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getDescricao()) == JOptionPane.YES_OPTION) {
 							JogoGourmetMensagens.repostaCorreta();
 							return true;
 						} else {
 							List<PratoList> novaListaPratos = prato.getPratoList();
-							novoPrato(novaListaPratos, prato.getPrato().getDescricao());
+							novaListaPratos.add(novoPrato(prato.getPrato().getDescricao()));
 							prato.setPratoList(novaListaPratos);		
 							return true;
 						}
