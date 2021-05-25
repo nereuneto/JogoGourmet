@@ -29,14 +29,14 @@ public class JogoGourmetController {
 				if (prato.getPratoList() == null) {
 					if (JogoGourmetMensagens.pratoNovo(prato.getPrato().getDescricao()) == JOptionPane.YES_OPTION) {
 						JogoGourmetMensagens.repostaCorreta();
-						return true;	
+						return true;
 					} else {
 						listaPrato.add(novoPrato(prato.getPrato().getDescricao()));
 						prato.setPratoList(listaPrato);
 						return true;
 					}
 				} else {
-					boolean validacaoPrato = validarPrato(prato.getPratoList(),false);			
+					boolean validacaoPrato = validarPrato(prato.getPratoList(),true);			
 					if (validacaoPrato) {
 						return true;
 					} else {
